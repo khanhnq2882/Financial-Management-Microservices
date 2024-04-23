@@ -1,4 +1,4 @@
-package com.khanhnq.accounts;
+package com.khanhnq.cards;
 
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
@@ -13,10 +13,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EnableJpaAuditing(auditorAwareRef = "auditAwareImpl")
 @OpenAPIDefinition(
         info = @Info(
-                title = "Accounts microservice REST API Documentation",
-                description = "Accounts microservice REST API Documentation",
+                title = "Cards microservice REST API Documentation",
+                description = "Cards microservice REST API Documentation",
                 version = "v1",
-                contact = @Contact (
+                contact = @Contact(
                         name = "Nguyen Quoc Khanh",
                         email = "khanhnq@gmail.com",
                         url = "https://www.khanhnq.com"
@@ -27,14 +27,14 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
                 )
         ),
         externalDocs = @ExternalDocumentation(
-                description =  "Accounts microservice REST API Documentation",
+                description =  "Cards microservice REST API Documentation",
                 url = "https://www.khanhnq.com/swagger-ui.html"
         )
 )
-public class AccountsApplication {
+public class CardsApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AccountsApplication.class, args);
+        SpringApplication.run(CardsApplication.class, args);
     }
 
 }
