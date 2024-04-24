@@ -1,0 +1,16 @@
+spring:
+  config:
+    activate:
+      on-profile: "qa"
+
+build:
+  version: "3.0"
+
+accounts:
+  message: "Welcome to accounts related qa APIs "
+  contactDetails:
+    name: "Hugh Jackman - QA Lead"
+    email: "hughJackman@gmail.com"
+  onCallSupport:
+    - (444) 555-1234
+    - (765) 123-4567

@@ -2,6 +2,7 @@ package com.khanhnq.loans.controller;
 
 import com.khanhnq.loans.constants.LoansConstants;
 import com.khanhnq.loans.dto.ErrorResponseDto;
+import com.khanhnq.loans.dto.LoansContactInfoDto;
 import com.khanhnq.loans.dto.LoansDto;
 import com.khanhnq.loans.dto.ResponseDto;
 import com.khanhnq.loans.service.ILoansService;
@@ -13,6 +14,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +35,9 @@ public class LoansController {
     public LoansController(ILoansService iLoansService) {
         this.iLoansService = iLoansService;
     }
+
+    @Autowired
+    private LoansContactInfoDto loansContactInfo;
 
     @Operation(
             summary = "Create Loan REST API",
@@ -162,5 +167,27 @@ public class LoansController {
         }
     }
 
-
+    @Operation(
+            summary = "Fetch Cards Contact Information REST API",
+            description = "REST API to fetch Cards Contact Information"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Http Status OK"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "HTTP Status Internal Server Error",
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDto.class)
+                    )
+            )
+    })
+    @GetMapping("/contact-info")
+    public ResponseEntity<LoansContactInfoDto> getContactInfo() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(loansContactInfo);
+    }
 }

@@ -1,0 +1,16 @@
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+
+build:
+  version: "2.0"
+
+loans:
+  message: "Welcome to loans related prod APIs "
+  contactDetails:
+    name: "Tony Stark - Product Owner"
+    email: "tonyStark@gmail.com"
+  onCallSupport:
+    - (666) 666-2345
+    - (654) 523-4444

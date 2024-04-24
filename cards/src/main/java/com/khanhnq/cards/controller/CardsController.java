@@ -1,6 +1,7 @@
 package com.khanhnq.cards.controller;
 
 import com.khanhnq.cards.constants.CardsConstants;
+import com.khanhnq.cards.dto.CardsContactInfoDto;
 import com.khanhnq.cards.dto.CardsDto;
 import com.khanhnq.cards.dto.ErrorResponseDto;
 import com.khanhnq.cards.dto.ResponseDto;
@@ -13,6 +14,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +35,9 @@ public class CardsController {
     public CardsController(ICardsService cardsService) {
         this.cardsService = cardsService;
     }
+
+    @Autowired
+    private CardsContactInfoDto cardsContactInfo;
 
     @Operation(
             summary = "Create Card REST API",
@@ -159,5 +164,29 @@ public class CardsController {
                 .statusMsg(CardsConstants.MESSAGE_417_DELETE)
                 .build();
         return new ResponseEntity<>(responseDto, HttpStatus.EXPECTATION_FAILED);
+    }
+
+    @Operation(
+            summary = "Fetch Cards Contact Information REST API",
+            description = "REST API to fetch Cards Contact Information"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Http Status OK"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "HTTP Status Internal Server Error",
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDto.class)
+                    )
+            )
+    })
+    @GetMapping("/contact-info")
+    public ResponseEntity<CardsContactInfoDto> getContactInfo() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(cardsContactInfo);
     }
 }

@@ -1,6 +1,7 @@
 package com.khanhnq.accounts.controller;
 
 import com.khanhnq.accounts.constants.AccountsConstants;
+import com.khanhnq.accounts.dto.ContactAccountsInfoDto;
 import com.khanhnq.accounts.dto.CustomerDto;
 import com.khanhnq.accounts.dto.ErrorResponseDto;
 import com.khanhnq.accounts.dto.ResponseDto;
@@ -13,6 +14,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,11 +29,15 @@ import org.springframework.web.bind.annotation.*;
         description = "CRUD REST APIs to CREATE, UPDATE, FETCH AND DELETE account details"
 )
 public class AccountsController {
+
     private final IAccountsService accountsService;
 
     public AccountsController(IAccountsService accountsService) {
         this.accountsService = accountsService;
     }
+
+    @Autowired
+    private ContactAccountsInfoDto accountsContactInfo;
 
     @Operation(
             summary = "Create Account REST API",
@@ -165,6 +171,30 @@ public class AccountsController {
                 .statusMsg(AccountsConstants.MESSAGE_417_DELETE)
                 .build();
         return new ResponseEntity<>(responseDto, HttpStatus.EXPECTATION_FAILED);
+    }
+
+    @Operation(
+            summary = "Fetch Accounts Contact Information REST API",
+            description = "REST API to fetch Accounts Contact Information"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Http Status OK"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "HTTP Status Internal Server Error",
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDto.class)
+                    )
+            )
+    })
+    @GetMapping("/contact-info")
+    public ResponseEntity<ContactAccountsInfoDto> getContactInfo() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(accountsContactInfo);
     }
 
 }
