@@ -1,7 +1,7 @@
 package com.khanhnq.accounts.controller;
 
 import com.khanhnq.accounts.constants.AccountsConstants;
-import com.khanhnq.accounts.dto.ContactAccountsInfoDto;
+import com.khanhnq.accounts.dto.AccountsContactInfoDto;
 import com.khanhnq.accounts.dto.CustomerDto;
 import com.khanhnq.accounts.dto.ErrorResponseDto;
 import com.khanhnq.accounts.dto.ResponseDto;
@@ -37,7 +37,7 @@ public class AccountsController {
     }
 
     @Autowired
-    private ContactAccountsInfoDto accountsContactInfo;
+    private AccountsContactInfoDto accountsContactInfo;
 
     @Operation(
             summary = "Create Account REST API",
@@ -191,7 +191,7 @@ public class AccountsController {
             )
     })
     @GetMapping("/contact-info")
-    public ResponseEntity<ContactAccountsInfoDto> getContactInfo() {
+    public ResponseEntity<AccountsContactInfoDto> getContactInfo() {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(accountsContactInfo);

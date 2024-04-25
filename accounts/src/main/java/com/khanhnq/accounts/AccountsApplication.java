@@ -1,6 +1,6 @@
 package com.khanhnq.accounts;
 
-import com.khanhnq.accounts.dto.ContactAccountsInfoDto;
+import com.khanhnq.accounts.dto.AccountsContactInfoDto;
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Contact;
@@ -33,7 +33,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
                 url = "https://www.khanhnq.com/swagger-ui.html"
         )
 )
-@EnableConfigurationProperties(value = ContactAccountsInfoDto.class)
+@EnableConfigurationProperties(value = AccountsContactInfoDto.class)
 public class AccountsApplication {
 
     public static void main(String[] args) {
