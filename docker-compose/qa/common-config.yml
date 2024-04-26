@@ -5,7 +5,7 @@ services:
 
   microservice-base-config:
     extends:
-      service: network-deploy-service
+      network-deploy-service
     deploy:
       resources:
         limits:
@@ -15,10 +15,10 @@ services:
 
   microservice-configserver-config:
     extends:
-      service: microservice-base-config
+      microservice-base-config
     depends_on:
       configserver:
         condition: service_started
     environment:
-      SPRING_PROFILES_ACTIVE: default
+      SPRING_PROFILES_ACTIVE: qa
       SPRING_CONFIG_IMPORT: "configserver:http://configserver:8071/"
