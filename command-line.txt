@@ -1,0 +1,17 @@
+* Build another instance for accounts service
+java -jar target/accounts-0.0.1-SNAPSHOT.jar --server.port=8084
+
+* Build another instance for cards service
+java -jar target/cards-0.0.1-SNAPSHOT.jar --server.port=8085
+
+* Build another instance for loans service
+java -jar target/loans-0.0.1-SNAPSHOT.jar --server.port=8086
+
+* Docker command to build accounts database server
+docker run -p 3307:3306 --name accountsdb -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=accountsdb -d mysql
+
+* Docker command to build cards database server
+docker run -p 3308:3306 --name cardsdb -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=cardsdb -d mysql
+
+* Docker command to build loans database server
+docker run -p 3309:3306 --name loansdb -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=loansdb -d mysql

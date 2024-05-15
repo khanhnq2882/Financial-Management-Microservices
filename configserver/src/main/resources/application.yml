@@ -12,6 +12,7 @@ spring:
       server:
 #        native:
 #          search-locations: "classpath:/config"
+#          search-locations: "file:///Users//eazybytes//Documents//config"
         git:
           uri: "https://github.com/khanhnq2882/financial-management-microservices-config.git"
           default-label: main
